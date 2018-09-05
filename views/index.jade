@@ -18,9 +18,9 @@ block content
       each todo in todos
         li
           if todo.finished
-            input(type="checkbox" class="finishTodo" data-id= todo.id data-finished="true" checked)
+            input(type="checkbox" class="finishTodo" data-id= todo.id checked)
             a(class="finished" href='delete/'+todo.id)= todo.todo
           else
-            input(type="checkbox" class="finishTodo" data-id= todo.id data-finished="false")
+            input(type="checkbox" class="finishTodo" data-id= todo.id)
             a(href='delete/'+todo.id)= todo.todo
 

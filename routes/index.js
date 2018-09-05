@@ -59,23 +59,21 @@ router.get('/delete/:id', function (req, res, next) {
 router.post('/finish/:id', function (req, res, next) {
   const id = req.params.id
   const getTodo = Todo
-  const action = req.body.finished
-  console.log(action)
-  if (action) {
-    getTodo.findOneAndUpdate({ _id: id }, { $set: { finished: false } }).then((data) => {
+  getTodo.findById(id).then((data) => {
+    const finished = data.finished == false ? true : false
+    getTodo.findOneAndUpdate({ _id: id }, { $set: { finished: finished } }).then((data) => {
       return res.json(data)
     }).catch((err) => {
-      return res.json(err)
+      console.log('error: ', err)
     });
-  } else {
-    getTodo.findOneAndUpdate({ _id: id }, { $set: { finished: true } }).then((data) => {
-      return res.json(data)
-    }).catch((err) => {
-      return res.json(err)
-    })
-  }
+
+  }).catch((err) => {
+    console.log('error: ', err)
+  })
 
 
 })
+
+
 
 module.exports = router;

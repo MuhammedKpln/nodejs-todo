@@ -1,20 +1,10 @@
 $(document).ready(function () {
-    function finished(id, action) {
-        alert(action)
-        if (action == false) {
-            var form_data = { 'finished': true }
-        } else {
-            alert('bura la')
-            var form_data = { 'finished': false }
-        }
-
-
+    function finished(id) {
         $.ajax({
             url: 'finish/' + id,
             type: "POST",
-            data: form_data,
             success: function (response) {
-                    //
+                alert('Successfull')
             }
         })
     }
@@ -22,8 +12,6 @@ $(document).ready(function () {
 
     $('.finishTodo').on('change', function () {
         const id = $(this).data('id')
-        const action = $(this).data('finished')
-        finished(id, action)
-        alert('Successfull')
+        finished(id)
     })
 })

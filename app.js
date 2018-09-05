@@ -10,8 +10,6 @@ const mongoose = require('mongoose')
 const app = express();
 
 const bodyParser = require('body-parser')
-const session = require('express-session');
-const flash = require('req-flash');
 // view engine setup
 
 const MONGODB_URI = 'mongodb://todoapp:admin123@ds145412.mlab.com:45412/todo'
@@ -36,13 +34,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use(session({
-  secret: 'djhxcvxfgshajfgjhgsjhfgsakjeauytsdfy',
-  resave: false,
-  saveUninitialized: true
-}));
-app.use(flash())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
