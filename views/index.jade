@@ -1,0 +1,26 @@
+extend layout
+
+
+block content
+  if success
+    p= success
+  if error
+    p= error
+
+  h1 My Todo List
+  #todo-table
+    form(action="add" method="POST")
+      input(type="text" name="todo")
+      button(type="submit" name="addTodo") Add Todo
+
+
+    ul.todos
+      each todo in todos
+        li
+          if todo.finished
+            input(type="checkbox" class="finishTodo" data-id= todo.id data-finished="true" checked)
+            a(class="finished" href='delete/'+todo.id)= todo.todo
+          else
+            input(type="checkbox" class="finishTodo" data-id= todo.id data-finished="false")
+            a(href='delete/'+todo.id)= todo.todo
+
